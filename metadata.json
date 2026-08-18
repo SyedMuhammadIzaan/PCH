@@ -1,0 +1,6 @@
+{
+  "name": "Pakistan Cloth House",
+  "description": "Modern, premium fashion ecommerce website and admin portal for Pakistan Cloth House (PCH) offering unstitched fabrics, stitched pret, luxury lawn, and traditional Pakistani apparel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
