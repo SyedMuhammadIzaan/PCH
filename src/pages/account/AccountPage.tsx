@@ -25,6 +25,7 @@ import { useCart } from '../../context/CartContext.js';
 import { useToast } from '../../context/ToastContext.js';
 import { api } from '../../services/api.js';
 import { Order } from '../../types/index.js';
+import { GoogleSignInModal } from '../../components/common/GoogleSignInModal.js';
 
 interface AccountPageProps {
   onNavigate: (path: string) => void;
@@ -45,6 +46,7 @@ export const AccountPage: React.FC<AccountPageProps> = ({ onNavigate }) => {
   const [authName, setAuthName] = useState('');
   const [authPhone, setAuthPhone] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
+  const [isGoogleModalOpen, setIsGoogleModalOpen] = useState(false);
 
   // Profile Form State
   const [name, setName] = useState(user?.name || '');
@@ -220,7 +222,7 @@ export const AccountPage: React.FC<AccountPageProps> = ({ onNavigate }) => {
 
             {/* Google 1-Click Button */}
             <button
-              onClick={handleGoogleAuth}
+              onClick={() => setIsGoogleModalOpen(true)}
               disabled={authLoading}
               className="w-full py-2.5 px-4 bg-white border border-pch hover:bg-slate-50 rounded-sm text-xs font-bold text-slate-700 flex items-center justify-center gap-3 transition shadow-2xs"
             >
@@ -353,6 +355,12 @@ export const AccountPage: React.FC<AccountPageProps> = ({ onNavigate }) => {
             </div>
           </div>
         </div>
+
+        {/* Google Account Selector Modal */}
+        <GoogleSignInModal
+          isOpen={isGoogleModalOpen}
+          onClose={() => setIsGoogleModalOpen(false)}
+        />
       </div>
     );
   }
