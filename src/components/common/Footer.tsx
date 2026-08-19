@@ -210,15 +210,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   Sign In / Register
                 </button>
               </li>
-              <li className="pt-2">
-                <button
-                  onClick={() => onNavigate('/admin/login')}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-900 text-emerald-200 hover:bg-emerald-800 text-xs font-semibold transition border border-emerald-700/50"
-                >
-                  <span>Admin Portal</span>
-                  <ArrowRight className="w-3 h-3" />
-                </button>
-              </li>
             </ul>
           </div>
         </div>

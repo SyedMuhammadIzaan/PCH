@@ -351,17 +351,6 @@ export const AccountPage: React.FC<AccountPageProps> = ({ onNavigate }) => {
                 </li>
               </ul>
             </div>
-
-            <div className="p-4 bg-slate-50 rounded-sm border border-pch text-center space-y-2">
-              <p className="text-[11px] text-slate-500 font-medium">Looking for the administrative control center?</p>
-              <button
-                onClick={() => onNavigate('/admin/login')}
-                className="text-xs font-bold text-pch-dark hover:underline flex items-center justify-center gap-1.5 mx-auto"
-              >
-                <Shield className="w-3.5 h-3.5 text-emerald-800" />
-                <span>Store Admin Login →</span>
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -382,16 +371,6 @@ export const AccountPage: React.FC<AccountPageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="flex items-center gap-3">
-          {isAdmin && (
-            <button
-              onClick={() => onNavigate('/admin/dashboard')}
-              className="px-4 py-2 bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xs uppercase tracking-wider rounded-sm transition flex items-center gap-1.5 shadow-xs"
-            >
-              <Shield className="w-3.5 h-3.5" />
-              <span>Admin Panel</span>
-            </button>
-          )}
-
           <button
             onClick={() => {
               logout();
