@@ -29,7 +29,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     const loadHomeData = async () => {
       try {
         setLoading(true);
-        const [cats, feat, top, fresh, revs, faqList] = await Promise.all([
+        const [catsRes, featRes, topRes, freshRes, revsRes, faqRes] = await Promise.allSettled([
           api.getCategories(),
           api.getFeaturedProducts(4),
           api.getTopSellingProducts(4),
@@ -38,14 +38,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           api.getFAQs('active'),
         ]);
 
-        setCategories(cats.filter((c) => c.status === 'active'));
-        setFeaturedProducts(feat);
-        setTopSellingProducts(top);
-        setNewArrivals(fresh);
-        setReviews(revs);
-        setFaqs(faqList);
-        if (faqList.length > 0) {
-          setActiveFaqId(faqList[0].id);
+        if (catsRes.status === 'fulfilled' && Array.isArray(catsRes.value)) {
+          setCategories(catsRes.value.filter((c) => c.status === 'active'));
+        }
+        if (featRes.status === 'fulfilled' && Array.isArray(featRes.value)) {
+          setFeaturedProducts(featRes.value);
+        }
+        if (topRes.status === 'fulfilled' && Array.isArray(topRes.value)) {
+          setTopSellingProducts(topRes.value);
+        }
+        if (freshRes.status === 'fulfilled' && Array.isArray(freshRes.value)) {
+          setNewArrivals(freshRes.value);
+        }
+        if (revsRes.status === 'fulfilled' && Array.isArray(revsRes.value)) {
+          setReviews(revsRes.value);
+        }
+        if (faqRes.status === 'fulfilled' && Array.isArray(faqRes.value)) {
+          setFaqs(faqRes.value);
+          if (faqRes.value.length > 0) {
+            setActiveFaqId(faqRes.value[0].id);
+          }
         }
       } catch (err) {
         console.error('Failed to load homepage data', err);

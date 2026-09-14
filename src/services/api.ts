@@ -109,15 +109,36 @@ export const api = {
   },
 
   async getTopSellingProducts(limit = 8): Promise<Product[]> {
-    return fetchJson(`${API_BASE}/products/top-selling?limit=${limit}`);
+    try {
+      const res = await fetchJson(`${API_BASE}/products/top-selling?limit=${limit}`);
+      if (Array.isArray(res)) return res;
+    } catch (e) {
+      console.warn('Fallback to getProducts for top-selling', e);
+    }
+    const fallback = await this.getProducts({ sort: 'popular', limit });
+    return fallback.products || [];
   },
 
   async getNewArrivals(limit = 8): Promise<Product[]> {
-    return fetchJson(`${API_BASE}/products/new-arrivals?limit=${limit}`);
+    try {
+      const res = await fetchJson(`${API_BASE}/products/new-arrivals?limit=${limit}`);
+      if (Array.isArray(res)) return res;
+    } catch (e) {
+      console.warn('Fallback to getProducts for new-arrivals', e);
+    }
+    const fallback = await this.getProducts({ newArrival: true, limit, sort: 'newest' });
+    return fallback.products || [];
   },
 
   async getFeaturedProducts(limit = 8): Promise<Product[]> {
-    return fetchJson(`${API_BASE}/products/featured?limit=${limit}`);
+    try {
+      const res = await fetchJson(`${API_BASE}/products/featured?limit=${limit}`);
+      if (Array.isArray(res)) return res;
+    } catch (e) {
+      console.warn('Fallback to getProducts for featured', e);
+    }
+    const fallback = await this.getProducts({ featured: true, limit });
+    return fallback.products || [];
   },
 
   async getProduct(slugOrId: string): Promise<Product> {

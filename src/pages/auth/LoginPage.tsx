@@ -88,6 +88,36 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
           <span>Continue with Google</span>
         </button>
 
+        {/* Quick Demo Sign In Chips */}
+        <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-3 space-y-2">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+            <span>Instant Demo Accounts (One Click)</span>
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('customer@pch.pk');
+                setPassword('customer123');
+              }}
+              className="py-1.5 px-2 bg-white hover:bg-emerald-50 text-zinc-700 hover:text-emerald-900 border border-zinc-200 rounded-lg text-[11px] font-semibold text-left transition truncate"
+            >
+              👤 Customer Account
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('admin@pch.pk');
+                setPassword('admin123');
+              }}
+              className="py-1.5 px-2 bg-white hover:bg-emerald-50 text-zinc-700 hover:text-emerald-900 border border-zinc-200 rounded-lg text-[11px] font-semibold text-left transition truncate"
+            >
+              🛡️ Admin Account
+            </button>
+          </div>
+        </div>
+
         {/* Divider */}
         <div className="relative flex py-1 items-center">
           <div className="flex-grow border-t border-zinc-200"></div>

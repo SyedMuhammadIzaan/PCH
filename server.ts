@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { createServer as createViteServer } from 'vite';
 import { apiRouter } from './server/api.js';
+import { seedDatabaseIfNeeded } from './src/db/seed.ts';
 
 async function startServer() {
   const app = express();
@@ -51,8 +52,13 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  app.listen(PORT, '0.0.0.0', async () => {
     console.log(`PCH Server running on http://localhost:${PORT}`);
+    try {
+      await seedDatabaseIfNeeded();
+    } catch (e) {
+      console.warn('Database seeding initialization notice:', e);
+    }
   });
 }
 

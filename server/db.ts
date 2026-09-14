@@ -18,7 +18,7 @@ interface Database {
   orders: Order[];
 }
 
-const initialCategories: Category[] = [
+export const initialCategories: Category[] = [
   {
     id: 'cat-1',
     name: 'Unstitched Luxury Lawn',
@@ -101,7 +101,7 @@ const initialCategories: Category[] = [
   },
 ];
 
-const initialProducts: Product[] = [
+export const initialProducts: Product[] = [
   {
     id: 'prod-1',
     name: 'Gul-e-Noor Embroidered Lawn 3-Piece',
@@ -573,7 +573,7 @@ const initialProducts: Product[] = [
   },
 ];
 
-const initialReviews: Review[] = [
+export const initialReviews: Review[] = [
   {
     id: 'rev-1',
     productId: 'prod-1',
@@ -642,7 +642,7 @@ const initialReviews: Review[] = [
   },
 ];
 
-const initialFAQs: FAQ[] = [
+export const initialFAQs: FAQ[] = [
   {
     id: 'faq-1',
     question: 'What are your delivery charges and how long does shipping take across Pakistan?',
@@ -699,7 +699,7 @@ const initialFAQs: FAQ[] = [
   },
 ];
 
-const initialUsers: User[] = [
+export const initialUsers: User[] = [
   {
     id: 'user-admin-1',
     name: 'Admin PCH',
@@ -732,7 +732,7 @@ const initialUsers: User[] = [
   },
 ];
 
-const initialOrders: Order[] = [
+export const initialOrders: Order[] = [
   {
     id: 'ord-1001',
     orderNumber: 'PCH-2026-881',
